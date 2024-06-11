@@ -1,0 +1,81 @@
+.App {
+  text-align: center;
+}
+
+.header {
+  background: linear-gradient(135deg, #524C42, #7B7466, #A39A8B, #C2BBAD, #E0DDD2, #C2BBAD, #A39A8B, #7B7466, #524C42);
+  color: white;
+  padding: 20px 0;
+  background-size: 200% 200%;
+  animation: gradient-animation 10s ease infinite alternate;
+}
+
+
+.title {
+  margin: 0;
+  text-align: center;
+}
+
+
+
+.search-container {
+  margin-bottom: 10px;
+}
+
+.sort-container {
+  float: right;
+}
+
+.country-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+  padding: 20px;
+  margin-top: 5px;
+}
+
+
+
+
+
+.country-info {
+  text-align: center;
+}
+
+/* Continent Colors */
+.asia {
+  background-color: #C70039;
+}
+
+.africa {
+  background-color: #FFC100;
+}
+
+.america {
+  background-color: #A1DD70;
+}
+
+.antartida {
+  background-color: #83B4FF;
+}
+
+.europa {
+  background-color: #E72929;
+}
+
+.oceania {
+  background-color: #F075AA;
+}
+
+
+@keyframes gradient-animation {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}

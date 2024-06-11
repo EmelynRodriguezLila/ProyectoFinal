@@ -1,0 +1,78 @@
+import React, { useState, useEffect } from 'react';
+import './CountryList.css';
+import Swal from 'sweetalert2';
+
+const CountryList = ({ onSelectCountry }) => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [sortBy, setSortBy] = useState('');
+    const [countries, setCountries] = useState([]);
+    const [filteredCountries, setFilteredCountries] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [countriesPerPage] = useState(25);
+
+    useEffect(() => {
+        fetch('https://restcountries.com/v3.1/all')
+            .then(response => response.json())
+            .then(data => {
+                setCountries(data);
+                setFilteredCountries(data);
+            })
+            .catch(error => console.error('Error fetching countries data: ', error));
+    }, []);
+
+    useEffect(() => {
+        let filtered = countries.filter(country =>
+            country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        if (sortBy === 'continent') {
+            filtered = filtered.sort((a, b) =>
+                a.region.localeCompare(b.region)
+            );
+        } else if (sortBy === 'population') {
+            filtered = filtered.sort((a, b) =>
+                b.population - a.population
+            );
+        }
+
+        setFilteredCountries(filtered);
+    }, [searchTerm, sortBy, countries]);
+
+    const getContinentClass = (continent) => {
+        switch (continent) {
+            case 'Asia':
+                return 'asia';
+            case 'Africa':
+                return 'africa';
+            case 'Americas':
+                return 'america';
+            case 'Antarctic':
+                return 'antartida';
+            case 'Europe':
+                return 'europa';
+            case 'Oceania':
+                return 'oceania';
+            default:
+                return '';
+        }
+    };
+
+    const handleSelectCountry = (country) => {
+        onSelectCountry(country);
+        Swal.fire({
+            imageUrl: country.flags.svg,
+            imageWidth: 100,
+            imageHeight: 60,
+            imageAlt: `Flag of ${country.name.common}`,
+            title: country.name.common,
+            html: `
+                <p><strong>Capital:</strong> ${country.capital}</p>
+                <p><strong>Región:</strong> ${country.region}</p>
+                <p><strong>Subregión:</strong> ${country.subregion}</p>
+                <p><strong>Población:</strong> ${country.population.toLocaleString()}</p>
+                <p><strong>Idiomas:</strong> ${Object.values(country.languages || {}).join(', ')}</p>
+                <p><strong>Moneda:</strong> ${Object.values(country.currencies || {}).map(currency => currency.name).join(', ')}</p>
+            `,
+            showCloseButton: true,
+        });
+    };

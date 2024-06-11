@@ -1,0 +1,123 @@
+/* CountryList.css */
+
+.country-card {
+    position: relative;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.country-card:hover {
+    transform: scale(1.05);
+}
+
+.country-card.africa,
+.country-card.america,
+.country-card.asia,
+.country-card.europa,
+.country-card.oceania,
+.country-card.antartida {
+    border: 5px solid transparent;
+    border-radius: 10px;
+    background-clip: padding-box;
+    background-origin: border-box;
+}
+
+.country-card.country-card.antartida::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #83B4FF, #A6C8FF, #C9DCFF, #6099FF);
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+.country-card.country-card.oceania::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #F075AA, #F67CAC, #FBA7BF, #E43F83);
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+.country-card.country-card.europa::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #5D0E41, #e01c1c, #F31559, #E74646);
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+.country-card.country-card.asia::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #D61C4E, #FF5733, #E06469, #FF0000);
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+.country-card.country-card.america::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #05a90a73, #65B741, #BED754, #367E18);
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+.country-card.africa::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    border-radius: 10px;
+    background: linear-gradient(45deg, orange, red, yellow, orange);
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
